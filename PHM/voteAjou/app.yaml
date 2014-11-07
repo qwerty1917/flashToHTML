@@ -1,0 +1,28 @@
+application: branchersbeta
+version: 0-0-1-proto
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+### builtins: import appengine native builtin services ###
+builtins:
+- appstats: on
+- admin_redirect: on
+- deferred: on
+- remote_api: on
+
+### handlers: set script or static files by url pattern ###
+handlers:
+- url: /static
+  static_dir: apps/static
+
+- url: .*
+  script: apps.app
+
+### libraries: import third-party libraries in python 2.7 ###
+libraries:
+- name: jinja2
+  version: "2.6"
+
+- name: markupsafe
+  version: "0.15"

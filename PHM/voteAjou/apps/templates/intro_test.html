@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title>Likelion Flaskr</title>
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+	<p>hello world</p>
+	<div class="llLogin">
+
+		<div class="page-header">
+			<h1>login
+				<small>classic login</small>
+			</h1>
+		</div>
+		<div class="bottomButtons">
+			<div class="llArticleCreate">
+				<form role="form" method="post" class="llFlaskrArticleForm">
+					{{ loginForm.hidden_tag() }}
+
+					{% if loginForm.errors %}
+					<div class="alert alert-danger fade in">
+						<a class="close" data-dismiss="alert" href="#">&times;</a>
+						{% for field, errors in loginForm.errors.items() %}
+						<ul>
+							{% for error in errors %}
+							<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+						{% endfor %}
+					</div>
+					{% endif %}
+
+					{% from "_form_field.html" import render_field %}
+					{% for field in loginForm if field.widget.input_type != 'hidden' %}
+					{{ render_field(field, class="form-control") }}
+					{% endfor %}
+					<input type="hidden" name="flag" value="login">
+					<button type="submit" class="btn btn-default">login</button>
+				</form>
+			</div>
+
+		</div>
+
+		<div class="page-header">
+			<h1>login
+				<small>login by sns</small>
+			</h1>
+		</div>
+		<div class="bottomButtons">
+			<a href="{{ url_for('login_google') }}">
+				<div class="googleLoginBtn">
+					<span class="icon"></span>
+					<span class="buttonText">Sign in with Google</span>
+				</div>
+			</a>
+		</div>
+
+		<div class="page-header">
+			<h1>Signup
+				<small>classic signup</small>
+			</h1>
+		</div>
+		<div class="bottomButtons">
+			<div class="llArticleCreate">
+				<form role="form" method="post" class="llFlaskrArticleForm">
+					{{ signupForm.hidden_tag() }}
+
+					{% if signupForm.errors %}
+					<div class="alert alert-danger fade in">
+						<a class="close" data-dismiss="alert" href="#">&times;</a>
+						{% for field, errors in signupForm.errors.items() %}
+						<ul>
+							{% for error in errors %}
+							<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+						{% endfor %}
+					</div>
+					{% endif %}
+
+					{% from "_form_field.html" import render_field %}
+					{% for field in signupForm if field.widget.input_type != 'hidden' %}
+					{{ render_field(field, class="form-control") }}
+					{% endfor %}
+					<input type="hidden" name="flag" value="signup">
+					<button type="submit" class="btn btn-default">signUp</button>
+				</form>
+			</div>
+
+		</div>
+
+		<div class="page-header">
+			<h1>login
+				<small>login by sns</small>
+			</h1>
+		</div>
+
+		<div class="bottomButtons">
+			<a href="{{ url_for('login_google') }}">
+                <div class="socialLoginBtn google">
+                    <span class="icon"><i class="fa fa-google"></i></span>
+                    <span class="buttonText">Sign in with Google</span>
+                </div>
+            </a>
+
+            <a href="{{ url_for('login_facebook') }}">
+                <div class="socialLoginBtn facebook">
+                    <span class="icon"><i class="fa fa-facebook"></i></span>
+                    <span class="buttonText">Sign in with Facebook</span>
+                </div>
+            </a>
+
+            <a href="{{ url_for('login_twitter') }}">
+                <div class="socialLoginBtn twitter">
+                    <span class="icon"><i class="fa fa-twitter"></i></span>
+                    <span class="buttonText">Sign in with Twitter</span>
+                </div>
+            </a>
+		</div>
+
+	</div>
+
+</body>
+</html>

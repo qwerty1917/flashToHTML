@@ -1,0 +1,11 @@
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Likelion Flaskr</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li {% if active_tab == 'timeline' %} class="active"{% endif %}><a href="{{ url_for('article_list') }}">타임라인</a></li>
+            <li {% if active_tab == 'article_create' %} class="active"{% endif %}><a href="{{ url_for('article_create') }}">글쓰기</a></li>
+        </ul>
+    </div>
+</nav>

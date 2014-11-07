@@ -1,0 +1,22 @@
+application: thebranchers
+version: 1
+runtime: php
+api_version: 1
+
+handlers:
+- url: /css
+  static_dir: css
+
+- url: /(.*\.jpg)
+  mime_type: image/png
+  static_files: img/\1
+  upload: img/(.*\.jpg)
+
+- url: /img
+  static_dir: img
+
+- url: /js
+  static_dir: js
+
+- url: /.*
+  script: main.html
