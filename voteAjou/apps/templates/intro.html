@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/branchersIntro.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+    <script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+    <!--<script type="text/javascript" src="./js/bootstrap.js"></script>-->
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    <!--<script type="text/javascript" src="./js/branchersIntro.js"></script>-->
+    <script src="{{ url_for('static', filename='js/branchersIntro.js') }}"></script>
+    <title>Branchers</title>
+</head>
+<body>
+<div id="containnerHMP">
+    <div id="brandHMP">
+        <div id="brandImageHMP">
+            <img src="{{ url_for('static', filename='images/logo_1.png') }}" alt="BrandImg">
+        </div>
+        <div id="brandSloganHMP">
+            <p>for every storyholic on the earth</p>
+        </div>
+    </div>
+    <div id="signupLoginDivHMP">
+        <!--bootstrap tab part / signup and login init -->
+        <ul id="signupLoginBoxHMP" class="nav nav-tabs" role="tablist">
+            <li id="signupTabHMP" class="active"><a href="#signupHMP" role="tab" data-toggle="tab">Sign up</a></li>
+            <li id="loginTabHMP"><a href="#loginHMP" role="tab" data-toggle="tab">Login</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="signupHMP">
+                <div class="tabBoxDivHMP">
+                    <!--signup wtform-->
+                    <form role="form" method="post" class="llFlaskrArticleForm">
+                        {{ signupForm.hidden_tag() }}
+
+                        <!--{% if signupForm.errors %}-->
+                        <!--<div class="alert alert-danger fade in">-->
+                        <!--<a class="close" data-dismiss="alert" href="#">&times;</a>-->
+                        <!--{% for field, errors in signupForm.errors.items() %}-->
+                        <!--<ul>-->
+                        <!--{% for error in errors %}-->
+                        <!--<li>{{ error }}</li>-->
+                        <!--{% endfor %}-->
+                        <!--</ul>-->
+                        <!--{% endfor %}-->
+                        <!--</div>-->
+                        <!--{% endif %}-->
+
+                        {% from "_form_field.html" import render_field %}
+                        {% for field in signupForm if field.widget.input_type != 'hidden' %}
+                        {{ render_field(field, class="form-control") }}
+                        {% endfor %}
+                        <input type="hidden" name="flag" value="signup">
+                        <button type="submit" class="btn btn-default">signUp</button>
+                    </form>
+                    <div class="bottomButtons">
+                        <p>Or signup with...</p>
+                        <div>
+                            <a class="socialButton" href="{{ url_for('login_google') }}">
+                                <img src="{{ url_for('static', filename='images/google.png') }}" alt="google"/>
+                            </a>
+                        </div>
+                        <div>
+                            <a class="socialButton" href="{{ url_for('login_facebook') }}">
+                                <img src="{{ url_for('static', filename='images/facebook.png') }}" alt="facebook"/>
+                            </a>
+                        </div>
+                        <div>
+                            <a class="socialButton" href="{{ url_for('login_twitter') }}">
+                                <img src="{{ url_for('static', filename='images/twitter.png') }}" alt="twitter"/>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="tab-pane" id="loginHMP">
+                <div class="tabBoxDivHMP">
+                    <!-- login wtform -->
+                    <form role="form" method="post" class="llFlaskrArticleForm">
+                        {{ loginForm.hidden_tag() }}
+
+                        <!--{% if loginForm.errors %}-->
+                        <!--<div class="alert alert-danger fade in">-->
+                        <!--<a class="close" data-dismiss="alert" href="#">&times;</a>-->
+                        <!--{% for field, errors in loginForm.errors.items() %}-->
+                        <!--<ul>-->
+                        <!--{% for error in errors %}-->
+                        <!--<li>{{ error }}</li>-->
+                        <!--{% endfor %}-->
+                        <!--</ul>-->
+                        <!--{% endfor %}-->
+                        <!--</div>-->
+                        <!--{% endif %}-->
+
+                        {% from "_form_field.html" import render_field %}
+                        {% for field in loginForm if field.widget.input_type != 'hidden' %}
+                        {{ render_field(field, class="form-control") }}
+                        {% endfor %}
+                        <input type="hidden" name="flag" value="login">
+                        <button type="submit" class="btn btn-default">login</button>
+                        <div class="bottomButtons">
+                            <p>Or login with...</p>
+                            <div>
+                                <a class="socialButton" href="{{ url_for('login_google') }}">
+                                    <img src="{{ url_for('static', filename='images/google.png') }}" alt="google"/>
+                                </a>
+                            </div>
+                            <div>
+                                <a class="socialButton" href="{{ url_for('login_facebook') }}">
+                                    <img src="{{ url_for('static', filename='images/facebook.png') }}" alt="facebook"/>
+                                </a>
+                            </div>
+                            <div>
+                                <a class="socialButton" href="{{ url_for('login_twitter') }}">
+                                    <img src="{{ url_for('static', filename='images/twitter.png') }}" alt="twitter"/>
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="serviceIntroductionIntroHMP">
+        <p>Wanna know more about branchers?</p>
+        <img id="singleLeaf" src="{{ url_for('static', filename='images/like.png') }}" alt="like">
+    </div>
+    <div class="serviceIntroductionHMP containner">
+        <img class="zigzagHMP" src="{{ url_for('static', filename='images/intro_zigzag.png') }}" alt="intro_zigzag">
+        <!-- upper zigzag -->
+        <div class="serviceIntroductionHMP center">
+            <!-- bgrnd img -->
+            <div class="serviceIntroductionBlockHMP frst">
+                <!-- bootstrap text box -->
+                <div class="serviceIntroductionImgDiv frst">
+                    <img src="{{ url_for('static', filename='images/1.png') }}" alt="1" width="180px" height="180px">
+                </div>
+                <div class="serviceIntroductionTextDiv frst">
+                    <div class="page-header">
+                        <h1>Find and read your story. <br/><small>From all of the stems and branches.</small></h1>
+                        <p>Just like the fact that only one branch on a one tree is nonsense, One ending in a one story is just a shabby stuff here. Every single story, event or character has tons of there own hidden stories. In this place, you will find infinte possibilitys on your most loved stories ever. You won't be dissapointed by just one, but not cool enough story line and it's ending. We sure all of storyholics on Middle-earth will love Branchers. we know that, because there will be no "The ends" on imagination of story lovers.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="serviceIntroductionBlockHMP scnd">
+                <!-- bootstrap text box -->
+                <div class="serviceIntroductionTextDiv scnd">
+                    <div class="page-header">
+                        <h1>Just imagine. <br/><small>That can be anything, anyending, anyworld.</small></h1>
+                        <p>Branchers loves every kinds of fictional stories you have. It will be Fantasy, Science fiction, Romance, Sports, Alternate history, or even Politics! Just if you want, you can make Mordred as unsung hero who had must conduct the duty of guardian of darkness but cursed to damned. Or king Arthur as mad king who was cazy at tossing a coin every time. Even more, There can be a story that alternate World Series novel just like John Farrell declined asking of clinching the game by John Lackey in 2013!</p>
+                    </div>
+                </div>
+                <div class="serviceIntroductionImgDiv scnd">
+                    <img src="{{ url_for('static', filename='images/2.png') }}" alt="2" width="180px" height="180px">
+                </div>
+            </div>
+            <div class="serviceIntroductionBlockHMP thrd">
+                <!-- bootstrap text box -->
+                <div class="serviceIntroductionImgDiv thrd">
+                    <img src=".{{ url_for('static', filename='images/3.png') }}" alt="3" width="180px" height="180px">
+                </div>
+                <div class="serviceIntroductionTextDiv thrd">
+                    <div class="page-header">
+                        <h1>Be yourself brancher.<br/><small>All of your stories can be new branches.</small></h1>
+                        <p>Here is our One Ring! Once you have an idea, Then you have capacity of making your own branch. Jusk cliking once while reading a story or an another branch, you can start your own branchs reaching out from original story. With out any other bothering stuffs, that will be shown to other readers immediately. Of course, creating whole completed story is also availavle. It's a walk in a park. Start, join, branch and make new ending of any story. You deserve to play god. Create your world.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img class="zigzagHMP" src="{{ url_for('static', filename='images/intro_zigzag2.png') }}" alt="intro_zigzag2">
+        <!-- bottom zigzag -->
+    </div>
+    <div id="footerHMP">
+        <p class="text-muted">Copyright(c) All rights reserved by Branchers</p>
+    </div>
+</div>
+<!-- 	<div id="footerHMP"> -->
+<!-- bootstrap footer -->
+<!-- <div class="footer">
+    <div class="container">
+        <p class="text-muted">Copyright(c) All rights reserved by Branchers</p>
+    </div>
+</div> -->
+<!-- 	</div> -->
+</body>
+

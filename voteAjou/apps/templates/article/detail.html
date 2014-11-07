@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block contents %}
+<div class="llArticleDetail">
+    <h1>글 상세보기</h1>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">제목 : {{ article.title }} / 작성자 : {{ article.author }}<span class="float-right">{{ article.date_created.strftime('%Y-%m-%d %H:%M:%S') }}</span></h3>
+        </div>
+        <div class="panel-body">
+            {{ article.content|safe }}
+        </div>
+        <div class="bottomButtons">
+            <a href="{{ url_for('article_like', id=article.id) }}" class="btn btn-info">좋아요 {{ article.like }}</a>
+        </div>
+    </div>
+
+    <div class="llCommentList">
+        {% if comments %}
+        {% for comment in comments %}
+        <div class="well well-sm">
+            <span class="badge">{{ loop.index }}</span> {{ comment.content }}
+                        <span class="float-right">
+                            <a href="{{ url_for('comment_like', id=comment.id) }}" class="btn btn-info">좋아요 {{comment.like}}</a>
+                            <a href="{{ url_for('comment_update', id=comment.id) }}" class="btn btn-success">댓글 수정</a>
+                            <a href="{{ url_for('comment_delete', id=comment.id) }}" class="btn btn-danger">댓글 삭제</a>
+                            <span class="label label-primary">{{ comment.author }}</span>
+                            <small>
+                                <a href="mailto:{{ comment.email }}">{{ comment.email }}</a> <em>{{ comment.date_created.strftime('%Y-%m-%d %H:%M:%S') }}</em>
+                            </small>
+                        </span>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="no-list">
+            댓글이 없습니다.
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="bottomButtons">
+        <a href="{{ url_for('article_list') }}" class="btn btn-primary">목록보기</a>
+        <a href="{{ url_for('comment_create', article_id=article.id) }}" class="btn btn-info">댓글쓰기</a>
+        <a href="{{ url_for('article_update', id=article.id) }}" class="btn btn-success">글 수정</a>
+        <a href="{{ url_for('article_delete', id=article.id) }}" class="btn btn-danger">글 삭제</a>
+    </div>
+</div>
+{% endblock %}
